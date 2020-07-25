@@ -71,4 +71,17 @@ public class Admin {
     public void setNow(Date now) {
         this.now = now;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "account='" + account + '\'' +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", remark='" + remark + '\'' +
+                ", now=" + now +
+                '}';
+    }
 }

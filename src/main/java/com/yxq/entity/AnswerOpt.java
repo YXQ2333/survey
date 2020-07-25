@@ -70,4 +70,17 @@ public class AnswerOpt {
     public void setVoter(String voter) {
         this.voter = voter;
     }
+
+    @Override
+    public String toString() {
+        return "AnswerOpt{" +
+                "createTime=" + createTime +
+                ", id=" + id +
+                ", optId=" + optId +
+                ", questionId=" + questionId +
+                ", surveyId=" + surveyId +
+                ", type='" + type + '\'' +
+                ", voter='" + voter + '\'' +
+                '}';
+    }
 }

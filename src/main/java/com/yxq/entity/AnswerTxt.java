@@ -61,4 +61,16 @@ public class AnswerTxt {
     public void setVoter(String voter) {
         this.voter = voter;
     }
+
+    @Override
+    public String toString() {
+        return "AnswerTxt{" +
+                "createTime=" + createTime +
+                ", id=" + id +
+                ", questionId=" + questionId +
+                ", result='" + result + '\'' +
+                ", surveyId=" + surveyId +
+                ", voter='" + voter + '\'' +
+                '}';
+    }
 }

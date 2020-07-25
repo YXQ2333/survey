@@ -77,4 +77,18 @@ public class QuestionOpt {
     public void setNum(Integer num) {
         this.num = num;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionOpt{" +
+                "answer=" + answer +
+                ", id=" + id +
+                ", opt='" + opt + '\'' +
+                ", orderby=" + orderby +
+                ", questionId=" + questionId +
+                ", surveyId=" + surveyId +
+                ", type=" + type +
+                ", num=" + num +
+                '}';
+    }
 }

@@ -168,4 +168,27 @@ public class Survey {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "anon=" + anon +
+                ", bgimg='" + bgimg + '\'' +
+                ", bounds=" + bounds +
+                ", createTime=" + createTime +
+                ", creator=" + creator +
+                ", endTime=" + endTime +
+                ", id=" + id +
+                ", logo='" + logo + '\'' +
+                ", password='" + password + '\'' +
+                ", remark='" + remark + '\'' +
+                ", rules=" + rules +
+                ", startTime=" + startTime +
+                ", state='" + state + '\'' +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", admin=" + admin +
+                ", questions=" + questions +
+                '}';
+    }
 }

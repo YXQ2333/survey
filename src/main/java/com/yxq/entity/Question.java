@@ -144,4 +144,25 @@ public class Question {
     public void setOptions(List<QuestionOpt> options) {
         this.options = options;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "checkStyle='" + checkStyle + '\'' +
+                ", createTime=" + createTime +
+                ", creator=" + creator +
+                ", id=" + id +
+                ", orderStyle=" + orderStyle +
+                ", orderby=" + orderby +
+                ", remark='" + remark + '\'' +
+                ", required=" + required +
+                ", score=" + score +
+                ", showStyle=" + showStyle +
+                ", surveyId=" + surveyId +
+                ", test=" + test +
+                ", title='" + title + '\'' +
+                ", type=" + type +
+                ", options=" + options +
+                '}';
+    }
 }
