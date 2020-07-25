@@ -2,14 +2,48 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/mvc   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--扫描controller-->
     <context:component-scan base-package="com.yxq.controller"/>
-    <!--注解驱动-->
 
+
+    <!--转换器-->
+    <!--HttpMessageConverter：负责将请求信息转换成对象，或者将对象转换成请求信息-->
+    <!--ConversionService：是Spring MVC通过反射机制对目标方法签名进行分析，将请求信息绑定到处理方法入参中，核心部件是DataBinder-->
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters>
+            <!--防止页面上出现双引号-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg name="defaultCharset" value="UTF-8"/>
+            </bean>
+            <!--bean和json转换-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <!--设置日期格式-->
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!--从前端收到日期后转换格式-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.yxq.utils.DateConvert"></bean>
+            </set>
+        </property>
+    </bean>
 </beans>
