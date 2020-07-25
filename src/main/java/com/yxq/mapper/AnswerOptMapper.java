@@ -10,15 +10,15 @@ import com.yxq.entity.AnswerOpt;
  * @date 2020/7/25 3:25
  */
 public interface AnswerOptMapper {
-    public int create(AnswerOpt pi);
+    int create(AnswerOpt answerOpt);
 
-    public int delete(Map<String, Object> paramMap);
+    int delete(Map<String, Object> paramMap);
 
-    public int update(Map<String, Object> paramMap);
+    int update(Map<String, Object> paramMap);
 
-    public List<AnswerOpt> query(Map<String, Object> paramMap);
+    List<AnswerOpt> query(Map<String, Object> paramMap);
 
-    public AnswerOpt detail(Map<String, Object> paramMap);
+    AnswerOpt detail(Map<String, Object> paramMap);
 
-    public int count(Map<String, Object> paramMap);
+    int count(Map<String, Object> paramMap);
 }
