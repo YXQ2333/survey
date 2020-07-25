@@ -8,24 +8,24 @@ import java.util.List;
  * @date 2020/7/25 3:05
  */
 public class Survey {
-    public static final String state_create = "创建";
-    public static final String state_exec = "执行中";
-    public static final String state_over = "结束";
-    private Integer anon;    // 0匿名，1不匿名
-    private String bgimg;
-    private Integer bounds;    // 0限制，1限制
-    private Date createTime;
-    private Integer creator;
-    private Date endTime;
+    public static final String STATE_CREATE = "创建";
+    public static final String STATE_EXEC = "执行中";
+    public static final String STATE_OVER = "结束";
     private Integer id;
-    private String logo;
-    private String password;
-    private String remark;
-    private Integer rules;    // 0公开，1密码
-    private Date startTime;
-    private String state;    // 状态：创建，执行中，已结束
     private String title;
+    private String remark;
+    private Integer bounds;    // 0限制，1限制
+    private Date startTime;
+    private Date endTime;
+    private Integer rules;    // 0公开，1密码
+    private String password;
     private String url;
+    private String state;    // 状态：创建，执行中，已结束
+    private String logo;
+    private String bgimg;
+    private Integer anon;    // 0匿名，1不匿名
+    private Integer creator;
+    private Date createTime;
     private Admin admin;    // 创建者信息
 
 
@@ -172,21 +172,21 @@ public class Survey {
     @Override
     public String toString() {
         return "Survey{" +
-                "anon=" + anon +
-                ", bgimg='" + bgimg + '\'' +
-                ", bounds=" + bounds +
-                ", createTime=" + createTime +
-                ", creator=" + creator +
-                ", endTime=" + endTime +
-                ", id=" + id +
-                ", logo='" + logo + '\'' +
-                ", password='" + password + '\'' +
-                ", remark='" + remark + '\'' +
-                ", rules=" + rules +
-                ", startTime=" + startTime +
-                ", state='" + state + '\'' +
+                "id=" + id +
                 ", title='" + title + '\'' +
+                ", remark='" + remark + '\'' +
+                ", bounds=" + bounds +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", rules=" + rules +
+                ", password='" + password + '\'' +
                 ", url='" + url + '\'' +
+                ", state='" + state + '\'' +
+                ", logo='" + logo + '\'' +
+                ", bgimg='" + bgimg + '\'' +
+                ", anon=" + anon +
+                ", creator=" + creator +
+                ", createTime=" + createTime +
                 ", admin=" + admin +
                 ", questions=" + questions +
                 '}';

@@ -7,12 +7,12 @@ import java.util.Date;
  * @date 2020/7/25 3:05
  */
 public class AnswerOpt {
-    private Date createTime;
     private Integer id;
-    private Integer optId;
-    private Integer questionId;
     private Integer surveyId;
+    private Integer questionId;
+    private Integer optId;
     private String type;    // 1是单选，2是多选
+    private Date createTime;
     private String voter;
 
     public Date getCreateTime() {
@@ -74,12 +74,12 @@ public class AnswerOpt {
     @Override
     public String toString() {
         return "AnswerOpt{" +
-                "createTime=" + createTime +
-                ", id=" + id +
-                ", optId=" + optId +
-                ", questionId=" + questionId +
+                "id=" + id +
                 ", surveyId=" + surveyId +
+                ", questionId=" + questionId +
+                ", optId=" + optId +
                 ", type='" + type + '\'' +
+                ", createTime=" + createTime +
                 ", voter='" + voter + '\'' +
                 '}';
     }

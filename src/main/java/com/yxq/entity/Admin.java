@@ -8,10 +8,10 @@ import java.util.Date;
  * @date 2020/7/25 3:05
  */
 public class Admin {
-    private String account;
     private Integer id;
-    private String name;
+    private String account;
     private String password;
+    private String name;
     private String phone;
     private String remark;
     private Date now;
@@ -75,10 +75,10 @@ public class Admin {
     @Override
     public String toString() {
         return "Admin{" +
-                "account='" + account + '\'' +
-                ", id=" + id +
-                ", name='" + name + '\'' +
+                "id=" + id +
+                ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", remark='" + remark + '\'' +
                 ", now=" + now +

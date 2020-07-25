@@ -7,11 +7,11 @@ import java.util.Date;
  * @date 2020/7/25 3:05
  */
 public class AnswerTxt {
-    private Date createTime;
     private Integer id;
+    private Integer surveyId;
     private Integer questionId;
     private String result;
-    private Integer surveyId;
+    private Date createTime;
     private String voter;
 
     public Date getCreateTime() {
@@ -65,11 +65,11 @@ public class AnswerTxt {
     @Override
     public String toString() {
         return "AnswerTxt{" +
-                "createTime=" + createTime +
-                ", id=" + id +
+                "id=" + id +
+                ", surveyId=" + surveyId +
                 ", questionId=" + questionId +
                 ", result='" + result + '\'' +
-                ", surveyId=" + surveyId +
+                ", createTime=" + createTime +
                 ", voter='" + voter + '\'' +
                 '}';
     }

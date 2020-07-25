@@ -5,13 +5,13 @@ package com.yxq.entity;
  * @date 2020/7/25 3:05
  */
 public class QuestionOpt {
-    private Integer answer;    // 默认为null，1为答案
     private Integer id;
+    private Integer surveyId;
+    private Integer questionId;
+    private Integer type;    // 1单选，2多选
     private String opt;
     private Integer orderby;
-    private Integer questionId;
-    private Integer surveyId;
-    private Integer type;    // 1单选，2多选
+    private Integer answer;    // 默认为null，1为答案
     private Integer num;    // 被选择的次数
 
     public Integer getAnswer() {
@@ -81,13 +81,13 @@ public class QuestionOpt {
     @Override
     public String toString() {
         return "QuestionOpt{" +
-                "answer=" + answer +
-                ", id=" + id +
+                "id=" + id +
+                ", surveyId=" + surveyId +
+                ", questionId=" + questionId +
+                ", type=" + type +
                 ", opt='" + opt + '\'' +
                 ", orderby=" + orderby +
-                ", questionId=" + questionId +
-                ", surveyId=" + surveyId +
-                ", type=" + type +
+                ", answer=" + answer +
                 ", num=" + num +
                 '}';
     }

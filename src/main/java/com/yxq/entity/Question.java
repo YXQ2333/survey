@@ -8,20 +8,20 @@ import java.util.List;
  * @date 2020/7/25 3:05
  */
 public class Question {
-    private String checkStyle;
-    private Date createTime;
-    private Integer creator;
     private Integer id;
-    private Integer orderStyle;    // 0顺序排列，1随机排列
-    private Integer orderby;
-    private String remark;
-    private Integer required;    // 0非必填，1必填
-    private Integer score;
-    private Integer showStyle;    // 列数：1，2，3，4
-    private Integer surveyId;
-    private Integer test;    // 0不评测，1评测
     private String title;
+    private String remark;
     private Integer type;    // 1单选，2多选，3单行文本，4多行文本
+    private Integer required;    // 0非必填，1必填
+    private String checkStyle;
+    private Integer orderStyle;    // 0顺序排列，1随机排列
+    private Integer showStyle;    // 列数：1，2，3，4
+    private Integer test;    // 0不评测，1评测
+    private Integer score;
+    private Integer orderby;
+    private Integer creator;
+    private Date createTime;
+    private Integer surveyId;
     private List<QuestionOpt> options;
 
 
@@ -148,20 +148,20 @@ public class Question {
     @Override
     public String toString() {
         return "Question{" +
-                "checkStyle='" + checkStyle + '\'' +
-                ", createTime=" + createTime +
-                ", creator=" + creator +
-                ", id=" + id +
-                ", orderStyle=" + orderStyle +
-                ", orderby=" + orderby +
-                ", remark='" + remark + '\'' +
-                ", required=" + required +
-                ", score=" + score +
-                ", showStyle=" + showStyle +
-                ", surveyId=" + surveyId +
-                ", test=" + test +
+                "id=" + id +
                 ", title='" + title + '\'' +
+                ", remark='" + remark + '\'' +
                 ", type=" + type +
+                ", required=" + required +
+                ", checkStyle='" + checkStyle + '\'' +
+                ", orderStyle=" + orderStyle +
+                ", showStyle=" + showStyle +
+                ", test=" + test +
+                ", score=" + score +
+                ", orderby=" + orderby +
+                ", creator=" + creator +
+                ", createTime=" + createTime +
+                ", surveyId=" + surveyId +
                 ", options=" + options +
                 '}';
     }
