@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxq.mapper.AdminMapper">
+    <insert id="add" keyProperty="id" useGeneratedKeys="true">
+        insert into tb_admin(account,password,name,phone,remark) values(#{account},#{password},#{name},#{phone},#{remark})
+    </insert>
+</mapper>
