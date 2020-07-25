@@ -1,27 +1,27 @@
 package com.yxq.entity;
 
+
+import java.util.Date;
+
 /**
  * @author yxq
- * @date 2020/7/25 2:59
+ * @date 2020/7/25 3:05
  */
 public class Admin {
-    private Integer id;
     private String account;
-    private String password;
+    private Integer id;
     private String name;
+    private String password;
     private String phone;
     private String remark;
+    private Date now;
 
-    public Admin() {
+    public String getAccount() {
+        return account;
     }
 
-    public Admin(Integer id, String account, String password, String name, String phone, String remark) {
-        this.id = id;
+    public void setAccount(String account) {
         this.account = account;
-        this.password = password;
-        this.name = name;
-        this.phone = phone;
-        this.remark = remark;
     }
 
     public Integer getId() {
@@ -32,12 +32,12 @@ public class Admin {
         this.id = id;
     }
 
-    public String getAccount() {
-        return account;
+    public String getName() {
+        return name;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -46,14 +46,6 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone() {
@@ -72,15 +64,11 @@ public class Admin {
         this.remark = remark;
     }
 
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
+    public Date getNow() {
+        return now;
+    }
+
+    public void setNow(Date now) {
+        this.now = now;
     }
 }

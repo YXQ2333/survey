@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     @Autowired
     private AdminService adminService;
-
-    @GetMapping("/add")
-    public void add() {
+    @GetMapping("/create")
+    public void create() {
         Admin admin = new Admin();
-        admin.setAccount("system");
-        admin.setName("系统操作员");
-        admin.setPassword("123456");
-        adminService.add(admin);
+        admin.setAccount("wulala");
+        admin.setPassword("121212");
+        adminService.create(admin);
     }
 }

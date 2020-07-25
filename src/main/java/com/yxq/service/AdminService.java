@@ -7,5 +7,5 @@ import com.yxq.entity.Admin;
  * @date 2020/7/25 3:08
  */
 public interface AdminService {
-    void add(Admin admin);
+    int create(Admin admin);
 }
