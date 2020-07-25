@@ -8,10 +8,11 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
+ * 自定义时间转换器
+ *
  * @author yxq
  * @date 2020/7/25 18:54
  */
-// 自定义时间转换器
 public class DateConvert implements Converter<String, Date> {
     @Override
     public Date convert(String source) {

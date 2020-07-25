@@ -23,4 +23,5 @@ public interface AdminService {
 
     int count(Admin admin);
 
+    Admin login(String account,String password);
 }

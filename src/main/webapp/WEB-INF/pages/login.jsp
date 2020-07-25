@@ -48,11 +48,11 @@
                     <h1>调查问卷系统登录</h1>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-username" for="username"></label>
-                    <input type="text" name="username" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="admin">
+                    <label class="layui-icon layui-icon-username"></label>
+                    <input type="text" name="account" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="admin">
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-password" for="password"></label>
+                    <label class="layui-icon layui-icon-password"></label>
                     <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123456">
                 </div>
                 <div class="layui-form-item">
@@ -87,7 +87,22 @@
                 layer.msg('验证码不能为空');
                 return false;
             }
-            window.location = 'index.html';
+            // 本次提交的字符串
+            $.ajax({
+                url:'login',
+                type:'POST',
+                data:JSON.stringify(data),
+                contentType:'application/json',
+                dataType:'json',
+                success:function (data) {
+                    if (data.code == 200) {
+                        location.href = "index";
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+            // console.log(data);
             return false;
         });
     });

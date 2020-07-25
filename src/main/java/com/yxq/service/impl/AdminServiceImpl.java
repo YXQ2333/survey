@@ -58,4 +58,11 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.count(map);
     }
 
+    @Override
+    public Admin login(String account, String password) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("account",account);
+        map.put("password",password);
+        return adminMapper.detail(map);
+    }
 }
