@@ -151,6 +151,7 @@
         <directory>src/main/java</directory>
         <includes>
           <include>**/*.xml</include>
+          <include>**/*.json</include>
         </includes>
       </resource>
       <resource>
@@ -159,6 +160,7 @@
           <include>**/*.yml</include>
           <include>**/*.xml</include>
           <include>**/*.properties</include>
+          <include>**/*.json</include>
         </includes>
       </resource>
     </resources>

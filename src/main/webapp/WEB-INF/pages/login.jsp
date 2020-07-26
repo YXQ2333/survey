@@ -19,8 +19,8 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="static/lib/layui-src/css/layui.css" media="all">
     <!--[if lt IE 9]>
-    <script src="js/html5.min.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="static/js/html5.min.js"></script>
+    <script src="static/js/respond.min.js"></script>
     <![endif]-->
     <style>
         html, body {width: 100%;height: 100%;overflow: hidden}
