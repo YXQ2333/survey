@@ -15,6 +15,9 @@ public interface AdminService {
     // 根据用户删除
     int delete(Integer id);
 
+    // 批量删除
+    int deleteBatch(String ids);
+
     int update(Admin admin);
 
     List<Admin> query(Admin admin);

@@ -62,8 +62,8 @@
       "target": "_self",
       "child": [
         {
-          "title": "管理员",
-          "href": "page/error.html",
+          "title": "用户管理",
+          "href": "admin/list",
           "icon": "fa fa-superpowers",
           "target": "_self"
         },

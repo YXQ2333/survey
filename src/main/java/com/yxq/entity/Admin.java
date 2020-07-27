@@ -1,13 +1,15 @@
 package com.yxq.entity;
 
 
+import com.yxq.utils.Entity;
+
 import java.util.Date;
 
 /**
  * @author yxq
  * @date 2020/7/25 3:05
  */
-public class Admin {
+public class Admin extends Entity {
     private Integer id;
     private String account;
     private String password;

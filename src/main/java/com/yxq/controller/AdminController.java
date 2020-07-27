@@ -2,16 +2,15 @@ package com.yxq.controller;
 
 import com.yxq.entity.Admin;
 import com.yxq.service.AdminService;
+import com.yxq.utils.MapControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yxq
@@ -25,61 +24,63 @@ public class AdminController {
 
     @PostMapping("/create")
     @ResponseBody
-    public String create(Admin admin) {
+    public Map<String,Object> create(@RequestBody Admin admin) {
         int count = adminService.create(admin);
         if (count < 1) {
-            return "error";
+            return MapControl.getInstance().error().getMap();
         }
-        return "success";
+        return MapControl.getInstance().success().getMap();
+    }
+
+    // 跳转到添加用户页面
+    @GetMapping("/create")
+    public String v_create() {
+        return "admin/add";
     }
 
     @PostMapping("/delete")
     @ResponseBody
-    public String delete(Integer id) {
-        int count = adminService.delete(id);
+    public Map<String,Object> delete(String ids) {
+        int count = adminService.deleteBatch(ids);
         if (count < 1) {
-            return "error";
+            return MapControl.getInstance().error().getMap();
         }
-        return "success";
+        return MapControl.getInstance().success().getMap();
     }
 
     @PostMapping("/update")
     @ResponseBody
-    public String update(Admin admin) {
+    public Map<String,Object> update(@RequestBody Admin admin) {
         int count = adminService.update(admin);
         if (count < 1) {
-            return "错误";
+            return MapControl.getInstance().error().getMap();
         }
-        return "正确";
+        return MapControl.getInstance().success().getMap();
     }
 
-    /*@PostMapping("/query")
+    @PostMapping("/query")
     @ResponseBody
-    public List<Admin> query(Admin admin) {
-        for (Admin admin1 : adminService.query(admin)) {
-            System.out.println(admin1);
-        }
-        return adminService.query(admin);
-    }*/
-    @GetMapping("/query2")
-    @ResponseBody
-    public List<Admin> query(Admin admin) {
-        return adminService.query(admin);
-    }
-    @GetMapping("/query")
-    public String query(Admin admin, ModelMap modelMap) {
+    public Map<String, Object> query(@RequestBody Admin admin, ModelMap modelMap) {
+        System.out.println(admin.getPage());
+        System.out.println(admin.getLimit());
+        System.out.println(admin.getAccount());
+        System.out.println(admin.getName());
         List<Admin> list = adminService.query(admin);
-        modelMap.addAttribute("list",list);
-        return "../list.jsp";
+        int count = adminService.count(admin);
+//        modelMap.addAttribute("list",list);
+        return MapControl.getInstance().page(list, count, 0).getMap();
     }
 
-    @PostMapping("/detail")
-    @ResponseBody
-    public Admin detail(Integer id) {
-        Admin detail = adminService.detail(id);
-        detail.setNow(new Date());
-//        System.out.println(adminService.detail(id));
-        return detail;
-//        return adminService.detail(id);
+    @GetMapping("/detail")
+    public String detail(Integer id,ModelMap modelMap) {
+        Admin admin = adminService.detail(id);
+        modelMap.addAttribute("admin",admin);
+        return "admin/update";
+    }
+
+    // 用户管理
+    @GetMapping("/list")
+    public String list(Admin admin, ModelMap modelMap) {
+        return "admin/list";
     }
 }
