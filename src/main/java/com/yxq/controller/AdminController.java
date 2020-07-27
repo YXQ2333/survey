@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -61,14 +60,10 @@ public class AdminController {
     @PostMapping("/query")
     @ResponseBody
     public Map<String, Object> query(@RequestBody Admin admin, ModelMap modelMap) {
-        System.out.println(admin.getPage());
-        System.out.println(admin.getLimit());
-        System.out.println(admin.getAccount());
-        System.out.println(admin.getName());
         List<Admin> list = adminService.query(admin);
         int count = adminService.count(admin);
 //        modelMap.addAttribute("list",list);
-        return MapControl.getInstance().page(list, count, 0).getMap();
+        return MapControl.getInstance().page(list, count).getMap();
     }
 
     @GetMapping("/detail")

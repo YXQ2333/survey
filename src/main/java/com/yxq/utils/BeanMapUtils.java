@@ -42,7 +42,7 @@ public class BeanMapUtils {
         if (bean != null) {
             BeanMap beanMap = BeanMap.create(bean);
             for (Object key : beanMap.keySet()) {
-                map.put("update" + upperFirstLatter(key + ""), beanMap.get(key));
+                map.put("update" + upperFirstLetter(key + ""), beanMap.get(key));
             }
         }
         return map;
@@ -110,7 +110,7 @@ public class BeanMapUtils {
      * @param letter 需要修改的字符串
      * @return 修改后的字符串
      */
-    private static String upperFirstLatter(String letter) {
+    private static String upperFirstLetter(String letter) {
         char[] chars = letter.toCharArray();
         // 如果是小写字母则需要转换
         if (chars[0] >= 'a' && chars[0] <= 'z') {

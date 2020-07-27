@@ -117,7 +117,7 @@
 	</sql>
 
 	<select id="queryByState" parameterType="string" resultType="int">
-		<![CDATA[select id from tb_survey where start_time <=now() and end_time>now() and state = #{_parameter}]]>
+		<![CDATA[select id from tb_survey where start_time <= now() and end_time > now() and state = #{_parameter}]]>
 	</select>
 	<select id="queryByStateForExec" parameterType="string" resultType="int">
 		<![CDATA[select * from tb_survey where  end_time<now() and state = #{_parameter}]]>

@@ -52,5 +52,10 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
+    <!--读取tb_admin表到内存中-->
+    <bean class="com.yxq.utils.SystemInit" init-method="init"></bean>
+    <!--修改创建状态-->
+    <bean class="com.yxq.utils.ScheduleTask"></bean>
+
 
 </beans>

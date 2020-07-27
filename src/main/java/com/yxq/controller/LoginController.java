@@ -5,6 +5,7 @@ import com.yxq.entity.Admin;
 import com.yxq.service.AdminService;
 import com.yxq.utils.MapControl;
 import com.yxq.utils.Md5Utils;
+import com.yxq.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,8 +43,8 @@ public class LoginController {
         }
         Admin admin = adminService.login(account, Md5Utils.getMd5(password));
         if (admin != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("admin", admin);
+            // 保存到session中，方便后面创建Survey时使用
+            SessionUtils.setAdmin(request,admin);
             return MapControl.getInstance().success("登录成功").getMap();
         }
         return MapControl.getInstance().error("账号或者密码错误").getMap();

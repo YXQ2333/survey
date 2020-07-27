@@ -20,7 +20,7 @@
 <div class="layuimini-container">
     <div class="layuimini-main">
 
-        <form class="layui-form" action="" lay-filter="demo1">
+        <form class="layui-form" action="" lay-filter="demo2">
             <%--隐藏域--%>
             <input type="hidden" name="id" value="${admin.id}" lay-verify="required" autocomplete="off" placeholder="请输入账号" class="layui-input">
             <div class="layui-form-item">
@@ -101,7 +101,7 @@
         });
 
         //表单初始赋值
-        form.val('demo1', {
+        form.val('demo2', {
             'account':'${admin.account}',
             'name':'${admin.name}',
             'phone':'${admin.phone}',
