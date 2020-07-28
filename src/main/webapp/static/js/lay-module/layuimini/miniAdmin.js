@@ -200,7 +200,7 @@ layui.define(["jquery", "miniMenu", "element","miniTab", "miniTheme"], function 
         deleteLoader: function (loadingTime) {
             setTimeout(function () {
                 $('.layuimini-loader').fadeOut();
-            }, loadingTime * 60)
+            }, loadingTime * 1000)
         },
 
         /**

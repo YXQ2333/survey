@@ -263,7 +263,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
     //响应数据的自定义格式
     options.response = $.extend({
       statusName: 'code' //规定数据状态的字段名称
-      ,statusCode: 0 //规定成功的状态码
+      ,statusCode: 200 //规定成功的状态码
       ,msgName: 'msg' //规定状态信息的字段名称
       ,dataName: 'data' //规定数据总数的字段名称
       ,totalRowName: 'totalRow' //规定数据统计的字段名称
@@ -690,13 +690,12 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
       var params = {};
       params[request.pageName] = curr;
       params[request.limitName] = options.limit;
-      
+
       //参数
       var data = $.extend(params, options.where);
       if(options.contentType && options.contentType.indexOf("application/json") == 0){ //提交 json 格式
         data = JSON.stringify(data);
       }
-      
       that.loading();
 
       $.ajax({
