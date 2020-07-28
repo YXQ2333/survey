@@ -14,9 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MapControl {
-
-
-    private static final int SUCCESS_CODE = 0;
+    private static final int SUCCESS_CODE = 200;
     private static final int ERROR_CODE = 500;
 
     private Map<String,Object> paramMap = new HashMap<>();

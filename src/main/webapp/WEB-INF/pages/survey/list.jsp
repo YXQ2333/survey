@@ -58,6 +58,9 @@
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"><i class="fa fa-plus"></i> 添加</button>
                 <button class="layui-btn layui-btn-sm layui-btn-sm data-delete-btn" lay-event="edit"><i class="fa fa-pencil"></i> 修改</button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="editque"><i class="fa fa-pencil-square"></i> 设计问卷</button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="preview"><i class="fa fa-search"></i> 预览问卷</button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="publish"><i class="fa fa-pulse"></i> 发布问卷</button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"><i class="fa fa-remove"></i> 删除</button>
             </div>
         </script>
@@ -84,7 +87,8 @@
                 {type: "checkbox", width: 50},
                 {field: 'id', width: 100, title: 'ID', sort: true},
                 {field: 'title', width: 200, title: '问卷标题', sort: true},
-                {field: 'remark', width: 300, title: '备注', sort: true},
+                {field: 'url', width: 500, title: '问卷链接'},
+                {field: 'remark', width: 200, title: '备注', sort: true},
                 {field: 'startTime', width: 200, title: '开始时间', sort: true},
                 {field: 'endTime', width: 200, title: '结束时间', sort: true},
                 {field: 'state', width: 100, title: '状态', sort: true},
@@ -191,6 +195,72 @@
                 });
                 $(window).on("resize", function () {
                     layer.full(index);
+                });
+            } else if (obj.event === 'editque') {  // 监听修改操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                var arr = [];
+                for (index in data) {
+                    arr.push(data[index].id);
+                }
+                if (arr.length != 1) {
+                    layer.msg('请选择一行数据进行编辑',{time:1000});
+                    return;
+                }
+                var index = layer.open({
+                    title: '设计问卷',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: 'question?id='+arr[0],
+                    end:function () {
+                        table.reload('currentTableId');
+                    }
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+            } else if (obj.event === 'preview') {
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                var arr = [];
+                for (index in data) {
+                    arr.push(data[index].id);
+                }
+                if (arr.length != 1) {
+                    layer.msg('请选择一张问卷进行预览',{time:1000});
+                    return;
+                }
+                // console.log(arr[0]);
+                window.open("preview/" + arr[0]);
+            } else if (obj.event === 'publish') {
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                var arr = [];
+                for (index in data) {
+                    arr.push(data[index].id);
+                }
+                if (arr.length != 1) {
+                    layer.msg('请选择一张问卷发布',{time:1000});
+                    return;
+                }
+                // console.log(arr[0]);
+                $.ajax({
+                    url: 'publish',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: 'id=' + arr[0],
+                    success: function (data) {
+                        // 提示成功后关闭
+                        layer.msg(data.msg, {
+                            time: 1500
+                        }, function () {
+                            parent.layer.close(index);
+                            table.reload('currentTableId');
+                        });
+                    }
                 });
             }
         });

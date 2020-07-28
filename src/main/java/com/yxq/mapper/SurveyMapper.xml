@@ -100,7 +100,7 @@
 		<set>
 			<if test="updateAnon != null">anon = #{updateAnon},</if>
 			<if test="updateBgimg != null and updateBgimg != ''">bgimg = #{updateBgimg},</if>
-			<if test="updateBounds != null and updateBounds != ''">bounds = #{updateBounds},</if>
+			<if test="updateBounds != null">bounds = #{updateBounds},</if>
 			<if test="updateCreateTime != null">create_time = #{updateCreateTime},</if>
 			<if test="updateCreator != null and updateCreator != ''">creator = #{updateCreator},</if>
 			<if test="updateEndTime != null">end_time = #{updateEndTime},</if>
@@ -108,7 +108,7 @@
 			<if test="updateLogo != null and updateLogo != ''">logo = #{updateLogo},</if>
 			<if test="updatePassword != null and updatePassword != ''">password = #{updatePassword},</if>
 			<if test="updateRemark != null and updateRemark != ''">remark = #{updateRemark},</if>
-			<if test="updateRules != null and updateRules != ''">rules = #{updateRules},</if>
+			<if test="updateRules != null">rules = #{updateRules},</if>
 			<if test="updateStartTime != null">start_time = #{updateStartTime},</if>
 			<if test="updateState != null and updateState != ''">state = #{updateState},</if>
 			<if test="updateTitle != null and updateTitle != ''">title = #{updateTitle},</if>

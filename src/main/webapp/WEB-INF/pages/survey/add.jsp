@@ -114,7 +114,7 @@
                 dataType:'json',
                 data:JSON.stringify(data.field),
                 success:function(data){
-                    layer.msg(data.msg,{time:500},
+                    layer.msg('创建问卷成功',{time:500},
                         function(){
                             parent.layer.close(index);
                         });

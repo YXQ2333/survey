@@ -21,6 +21,8 @@ public interface SurveyService {
 
     List<Survey> query(Survey survey);
 
+    List<Survey> queryAll(Survey survey);
+
     Survey detail(Integer id);
 
     int count(Survey survey);

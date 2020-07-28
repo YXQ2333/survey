@@ -1,5 +1,7 @@
 package com.yxq.entity;
 
+import com.yxq.utils.Entity;
+
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import java.util.List;
  * @author yxq
  * @date 2020/7/25 3:05
  */
-public class Question {
+public class Question extends Entity {
     private Integer id;
     private String title;
     private String remark;

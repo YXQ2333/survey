@@ -79,6 +79,12 @@ public class SurveyServiceImpl implements SurveyService {
     }
 
     @Override
+    public List<Survey> queryAll(Survey survey) {
+        Map<String, Object> map = BeanMapUtils.beanToMap(survey);
+        return surveyMapper.query(map);
+    }
+
+    @Override
     public List<Survey> query(Survey survey) {
         PageHelper.startPage(survey.getPage(),survey.getLimit());
         Map<String, Object> map = BeanMapUtils.beanToMap(survey);

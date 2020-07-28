@@ -29,8 +29,6 @@ public class Survey extends Entity {
     private Integer creator;
     private Date createTime;
     private Admin admin;    // 创建者信息
-
-
     private List<Question> questions;
 
 
