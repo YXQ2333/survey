@@ -1,8 +1,6 @@
 package com.yxq.controller;
 
-import com.yxq.entity.Admin;
-import com.yxq.entity.Question;
-import com.yxq.entity.Survey;
+import com.yxq.entity.*;
 import com.yxq.service.QuestionService;
 import com.yxq.service.SurveyService;
 import com.yxq.utils.MapControl;
@@ -17,9 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author yxq
@@ -164,4 +160,51 @@ public class SurveyController {
         }
         return "redirect:preview/" + id;
     }
+
+    // 提交问卷
+    @PostMapping("/submit")
+    @ResponseBody
+    public Map<String,Object> submit(@RequestBody List<Map<String,Object>> list) {
+        List<AnswerOpt> answerOptList = new ArrayList<>();
+        List<AnswerTxt> answerTxtList = new ArrayList<>();
+
+        for (Map<String, Object> map : list) {
+            // 如果是选择题
+            if ("1".equals(object2String(map.get("type"))) || "2".equals(object2String(map.get("type")))) {
+                List<Object> opts = (List<Object>) map.get("opts");
+                for (Object opt : opts) {
+                    AnswerOpt answerOpt = new AnswerOpt();
+                    answerOpt.setQuestionId(object2Integer(map.get("questionId")));
+                    answerOpt.setSurveyId(object2Integer(map.get("surveyId")));
+                    answerOpt.setType(object2String(map.get("type")));
+                    answerOpt.setOptId(object2Integer(opt));
+                    answerOpt.setCreateTime(new Date());
+                    answerOptList.add(answerOpt);
+                }
+            }else if ("3".equals(object2String(map.get("type"))) || "4".equals(object2String(map.get("type")))) {   // 非选择题
+                AnswerTxt answerTxt = new AnswerTxt();
+                answerTxt.setQuestionId(object2Integer(map.get("questionId")));
+                answerTxt.setSurveyId(object2Integer(map.get("surveyId")));
+                answerTxt.setResult(object2String(map.get("result")));
+                answerTxt.setCreateTime(new Date());
+                answerTxtList.add(answerTxt);
+            }
+        }
+        surveyService.submit(answerOptList,answerTxtList);
+        return MapControl.getInstance().success("提交成功").getMap();
+    }
+
+    public String object2String(Object object) {
+        if (object != null) {
+            return object+"";
+        }
+        return null;
+    }
+    public Integer object2Integer(Object object) {
+        if (object != null) {
+            return Integer.parseInt(object+"");
+        }
+        return null;
+    }
+
 }

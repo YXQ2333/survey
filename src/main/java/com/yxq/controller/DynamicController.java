@@ -50,5 +50,9 @@ public class DynamicController {
 
     }
 
-
+    // 成功提交问卷后
+    @GetMapping("/questionnaire/success")
+    public String success() {
+        return "survey/success";
+    }
 }

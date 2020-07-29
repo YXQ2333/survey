@@ -1,7 +1,11 @@
 package com.yxq.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.yxq.entity.AnswerOpt;
+import com.yxq.entity.AnswerTxt;
 import com.yxq.entity.Survey;
+import com.yxq.mapper.AnswerOptMapper;
+import com.yxq.mapper.AnswerTxtMapper;
 import com.yxq.mapper.SurveyMapper;
 import com.yxq.service.SurveyService;
 import com.yxq.utils.BeanMapUtils;
@@ -22,6 +26,10 @@ import java.util.Map;
 public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyMapper surveyMapper;
+    @Autowired
+    private AnswerTxtMapper answerTxtMapper;
+    @Autowired
+    private AnswerOptMapper answerOptMapper;
 
     @Override
     public int create(Survey survey) {
@@ -104,4 +112,15 @@ public class SurveyServiceImpl implements SurveyService {
         return surveyMapper.count(map);
     }
 
+    @Override
+    public Integer submit(List<AnswerOpt> answerOptList, List<AnswerTxt> answerTxtList) {
+        int count = 0;
+        for (AnswerOpt answerOpt : answerOptList) {
+            count = answerOptMapper.create(answerOpt);
+        }
+        for (AnswerTxt answerTxt : answerTxtList) {
+            count = answerTxtMapper.create(answerTxt);
+        }
+        return count;
+    }
 }

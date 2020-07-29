@@ -1,5 +1,7 @@
 package com.yxq.service;
 
+import com.yxq.entity.AnswerOpt;
+import com.yxq.entity.AnswerTxt;
 import com.yxq.entity.Survey;
 
 import java.util.List;
@@ -28,4 +30,6 @@ public interface SurveyService {
     int count(Survey survey);
 
     void updateState();
+
+     Integer submit(List<AnswerOpt> answerOptList, List<AnswerTxt> answerTxtList);
 }
