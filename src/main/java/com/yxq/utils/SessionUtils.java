@@ -17,6 +17,9 @@ public class SessionUtils {
     }
 
     public static Admin getAdmin(HttpServletRequest request) {
-        return (Admin) request.getSession().getAttribute(KEY);
+        if (request.getSession().getAttribute(KEY) != null){
+            return (Admin) request.getSession().getAttribute(KEY);
+        }
+        return null;
     }
 }

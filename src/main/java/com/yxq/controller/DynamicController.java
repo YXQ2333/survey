@@ -31,7 +31,7 @@ public class DynamicController {
         List<Survey> surveyList = surveyService.queryAll(exec);
         Survey entity = null;
         for (Survey survey : surveyList) {
-            if (survey.getUrl().contains(uuid)) {
+            if (survey.getUrl()!=null && survey.getUrl().contains(uuid)) {
                 entity = survey;
             }
         }
