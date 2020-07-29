@@ -13,6 +13,7 @@ import com.yxq.utils.MapParameter;
 import com.yxq.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Map;
  * @date 2020/7/27 19:50
  */
 @Service
+@Transactional
 public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyMapper surveyMapper;

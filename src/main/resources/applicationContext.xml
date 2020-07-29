@@ -6,7 +6,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/tx   http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--加载数据库配置文件-->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -57,5 +57,10 @@
     <!--修改创建状态-->
     <bean class="com.yxq.utils.ScheduleTask"></bean>
 
-
+    <!--配置事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--开启事务注解支持-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 </beans>

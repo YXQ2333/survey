@@ -1,6 +1,5 @@
 package com.yxq.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.yxq.entity.Question;
 import com.yxq.entity.QuestionOpt;
 import com.yxq.mapper.QuestionMapper;
@@ -8,9 +7,9 @@ import com.yxq.mapper.QuestionOptMapper;
 import com.yxq.service.QuestionService;
 import com.yxq.utils.BeanMapUtils;
 import com.yxq.utils.MapParameter;
-import com.yxq.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +21,7 @@ import java.util.Map;
  * @date 2020/7/27 19:50
  */
 @Service
+@Transactional
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
