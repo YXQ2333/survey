@@ -56,12 +56,27 @@
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"><i class="fa fa-plus"></i> 添加</button>
-                <button class="layui-btn layui-btn-sm layui-btn-sm data-delete-btn" lay-event="edit"><i class="fa fa-pencil"></i> 修改</button>
-                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="editque"><i class="fa fa-pencil-square"></i> 设计问卷</button>
-                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="preview"><i class="fa fa-search"></i> 预览问卷</button>
-                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="publish"><i class="fa fa-pulse"></i> 发布问卷</button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"><i class="fa fa-remove"></i> 删除</button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"><i
+                        class="fa fa-plus"></i> 添加问卷
+                </button>
+                <button class="layui-btn layui-btn-sm layui-btn-sm data-delete-btn" lay-event="edit"><i
+                        class="fa fa-pencil"></i> 修改问卷信息
+                </button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="editque"><i
+                        class="fa fa-pencil-square"></i> 设计问卷
+                </button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="preview"><i
+                        class="fa fa-search"></i> 预览问卷
+                </button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="publish"><i
+                        class="fa fa-send" aria-hidden="true"></i> 发布问卷
+                </button>
+                <button class="layui-btn layui-btn-checked layui-btn-sm data-delete-btn" lay-event="queryDetail"><i
+                        class="fa fa-search-plus"></i> 统计信息
+                </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"><i
+                        class="fa fa-remove"></i> 删除
+                </button>
             </div>
         </script>
 
@@ -93,8 +108,8 @@
                 {field: 'endTime', width: 200, title: '结束时间', sort: true},
                 {field: 'state', width: 100, title: '状态', sort: true},
                 // {field: 'creator', width: 100, title: '创建人', sort: true},
-                {field: 'account', title: '创建人', minWidth: 150,sort:true, templet:'<div>{{d.admin.account}}</div>'},
-                {field: 'createTime', title: '创建时间', minWidth: 150,sort:true}
+                {field: 'account', title: '创建人', minWidth: 150, sort: true, templet: '<div>{{d.admin.account}}</div>'},
+                {field: 'createTime', title: '创建时间', minWidth: 150, sort: true}
                 // {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -136,7 +151,7 @@
                     shadeClose: true,
                     area: ['100%', '100%'],
                     content: 'create',
-                    end:function () {
+                    end: function () {
                         table.reload('currentTableId');
                     }
                 });
@@ -151,7 +166,7 @@
                     arr.push(data[index].id);
                 }
                 if (arr.length < 1) {
-                    layer.msg('请选择要删除的数据',{time:1000});
+                    layer.msg('请选择要删除的数据', {time: 1000});
                     return;
                 }
                 // console.log(arr);
@@ -178,7 +193,7 @@
                     arr.push(data[index].id);
                 }
                 if (arr.length != 1) {
-                    layer.msg('请选择一行数据进行修改',{time:1000});
+                    layer.msg('请选择一行数据进行修改', {time: 1000});
                     return;
                 }
                 var index = layer.open({
@@ -188,8 +203,8 @@
                     maxmin: true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: 'detail?id='+arr[0],
-                    end:function () {
+                    content: 'detail?id=' + arr[0],
+                    end: function () {
                         table.reload('currentTableId');
                     }
                 });
@@ -204,7 +219,7 @@
                     arr.push(data[index].id);
                 }
                 if (arr.length != 1) {
-                    layer.msg('请选择一行数据进行编辑',{time:1000});
+                    layer.msg('请选择一行数据进行编辑', {time: 1000});
                     return;
                 }
                 var index = layer.open({
@@ -214,8 +229,8 @@
                     maxmin: true,
                     shadeClose: true,
                     area: ['100%', '100%'],
-                    content: 'question?id='+arr[0],
-                    end:function () {
+                    content: 'question?id=' + arr[0],
+                    end: function () {
                         table.reload('currentTableId');
                     }
                 });
@@ -230,7 +245,7 @@
                     arr.push(data[index].id);
                 }
                 if (arr.length != 1) {
-                    layer.msg('请选择一张问卷进行预览',{time:1000});
+                    layer.msg('请选择一张问卷进行预览', {time: 1000});
                     return;
                 }
                 // console.log(arr[0]);
@@ -243,7 +258,7 @@
                     arr.push(data[index].id);
                 }
                 if (arr.length != 1) {
-                    layer.msg('请选择一张问卷发布',{time:1000});
+                    layer.msg('请选择一张问卷发布', {time: 1000});
                     return;
                 }
                 // console.log(arr[0]);
@@ -262,6 +277,22 @@
                         });
                     }
                 });
+            } else if (obj.event === 'queryDetail') {  // 监听统计操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                var arr=[];
+                for(index in data){
+                    arr.push(data[index].id);
+                }
+                if(arr.length !=1){
+                    layer.msg("请选择一行数据查看",{time:1000});
+                    return;
+                }
+                if(data[0].url == "" || data[0].url == null){
+                    layer.msg("请先发布再查看详情",{time:1000});
+                    return;
+                }
+                window.open("queryDetail/"+arr[0]);
             }
         });
 

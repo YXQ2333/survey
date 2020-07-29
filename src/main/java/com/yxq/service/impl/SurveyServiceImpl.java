@@ -123,4 +123,10 @@ public class SurveyServiceImpl implements SurveyService {
         }
         return count;
     }
+
+    @Override
+    public List<AnswerOpt> queryAnswerOpt(AnswerOpt answerOpt) {
+        Map<String, Object> map = MapParameter.getInstance().put(BeanMapUtils.beanToMap(answerOpt)).getMap();
+        return answerOptMapper.query(map);
+    }
 }

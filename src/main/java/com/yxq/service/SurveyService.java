@@ -32,4 +32,7 @@ public interface SurveyService {
     void updateState();
 
      Integer submit(List<AnswerOpt> answerOptList, List<AnswerTxt> answerTxtList);
+
+     // 查询所有选择题结果
+    List<AnswerOpt> queryAnswerOpt(AnswerOpt answerOpt);
 }

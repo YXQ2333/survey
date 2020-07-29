@@ -104,10 +104,11 @@ public class SurveyController {
         modelMap.addAttribute("survey", survey);
         return "survey/preview";
     }
+
     // 发布问卷
     @PostMapping("/publish")
     @ResponseBody
-    public Map<String,Object> publish(Integer id,HttpServletRequest request) {
+    public Map<String, Object> publish(Integer id, HttpServletRequest request) {
         Survey test = surveyService.detail(id);
         System.out.println(test.getState());
         if (!Survey.STATE_EXEC.equals(test.getState())) {
@@ -116,7 +117,7 @@ public class SurveyController {
         String uuid = "/questionnaire/" + UUID.randomUUID().toString();
         Survey survey = new Survey();
         survey.setId(id);
-        String url = "http://"+request.getServerName()+":" + request.getServerPort() + request.getContextPath() + uuid;
+        String url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + uuid;
         survey.setUrl(url);
         surveyService.update(survey);
         return MapControl.getInstance().success("发布成功").getMap();
@@ -164,10 +165,11 @@ public class SurveyController {
     // 提交问卷
     @PostMapping("/submit")
     @ResponseBody
-    public Map<String,Object> submit(@RequestBody List<Map<String,Object>> list) {
+    public Map<String, Object> submit(@RequestBody List<Map<String, Object>> list) {
         List<AnswerOpt> answerOptList = new ArrayList<>();
         List<AnswerTxt> answerTxtList = new ArrayList<>();
-
+        // 给每个投票人生成唯一序列号，以便统计人数
+        String uuid = UUID.randomUUID().toString();
         for (Map<String, Object> map : list) {
             // 如果是选择题
             if ("1".equals(object2String(map.get("type"))) || "2".equals(object2String(map.get("type")))) {
@@ -179,30 +181,68 @@ public class SurveyController {
                     answerOpt.setType(object2String(map.get("type")));
                     answerOpt.setOptId(object2Integer(opt));
                     answerOpt.setCreateTime(new Date());
+                    answerOpt.setVoter(uuid);
                     answerOptList.add(answerOpt);
                 }
-            }else if ("3".equals(object2String(map.get("type"))) || "4".equals(object2String(map.get("type")))) {   // 非选择题
+            } else if ("3".equals(object2String(map.get("type"))) || "4".equals(object2String(map.get("type")))) {   // 非选择题
                 AnswerTxt answerTxt = new AnswerTxt();
                 answerTxt.setQuestionId(object2Integer(map.get("questionId")));
                 answerTxt.setSurveyId(object2Integer(map.get("surveyId")));
                 answerTxt.setResult(object2String(map.get("result")));
                 answerTxt.setCreateTime(new Date());
+                answerTxt.setVoter(UUID.randomUUID().toString());
                 answerTxtList.add(answerTxt);
             }
         }
-        surveyService.submit(answerOptList,answerTxtList);
+        surveyService.submit(answerOptList, answerTxtList);
         return MapControl.getInstance().success("提交成功").getMap();
+    }
+
+    // 统计问卷信息
+    @GetMapping("/queryDetail/{id}")
+    public String queryDetail(@PathVariable("id") Integer id, ModelMap modelMap) {
+        Survey survey = surveyService.detail(id);
+        Question question = new Question();
+        question.setSurveyId(survey.getId());
+        // 查询一个问卷中所有问题
+        List<Question> questionList = questionService.query(question);
+        // 设置为问卷的问题
+        survey.setQuestions(questionList);
+        // 总投票人数
+        AnswerOpt answerOpt = new AnswerOpt();
+        answerOpt.setSurveyId(id);
+        List<AnswerOpt> answerOptList = surveyService.queryAnswerOpt(answerOpt);
+        Set<String> set = new HashSet<>();
+        for (AnswerOpt opt : answerOptList) {
+            set.add(opt.getVoter());
+        }
+        // 统计每个选择题的选择次数
+        for (Question question1 : questionList) {
+            for (QuestionOpt questionOpt : question1.getOptions()) {
+                int num = 0;
+                for (AnswerOpt opt : answerOptList) {
+                    if (questionOpt.getId() == opt.getOptId()) {
+                        num++;
+                    }
+                }
+                questionOpt.setNum(num);
+            }
+        }
+        modelMap.addAttribute("survey", survey);
+        modelMap.addAttribute("total", set.size());
+        return "survey/queryDetail";
     }
 
     public String object2String(Object object) {
         if (object != null) {
-            return object+"";
+            return object + "";
         }
         return null;
     }
+
     public Integer object2Integer(Object object) {
         if (object != null) {
-            return Integer.parseInt(object+"");
+            return Integer.parseInt(object + "");
         }
         return null;
     }
